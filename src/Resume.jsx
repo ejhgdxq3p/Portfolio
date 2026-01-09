@@ -225,7 +225,7 @@ const CleanResume = () => {
   };
 
   // Helper to render bold text correctly
-  const renderText = (text: string) => {
+  const renderText = (text) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
