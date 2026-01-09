@@ -106,10 +106,10 @@ const CleanResume = ({ onClose }) => {
         }
       ],
       skills: [
-        { category: "AI & Multimodal Systems", items: "Python, PyTorch, CUDA. Multimodal Models: Florence-2 (VLM), SAM / SAM 2, CLIP. Large Language Models: DeepSeek (R1), Qwen2.5-VL, Gemini, Claude. Medical Imaging: NIfTI / DICOM Processing (Nibabel), OpenCV. Model Optimization: bitsandbytes (Quantization), Mixed Precision Inference." },
-        { category: "Agent & AI Workflow Engineering", items: "Agent-based Systems: Tool Calling, Multi-step Reasoning, First-Principles Prompting. Coding & AI Agents: Cursor, Claude Code, OpenAI Codex, Gemini CLI. AI Workflow Orchestration: ComfyUI (Custom Nodes), LangChain, LangGraph. Model Serving & Interaction: Gradio, FastAPI, RESTful APIs." },
-        { category: "Creative Technology & Interactive Systems", items: "Game Engines: Unity, Godot. Creative Coding: TouchDesigner, HTML5 Canvas, Matter.js. Generative Pipelines: GenAI Asset Generation (Text / Image / 3D). Frontend Frameworks: React, Vue, Web-based Interaction Design." },
-        { category: "Hardware & Physical Computing", items: "Digital & RF Systems: FPGA (Verilog), Signal Processing. PCB Design & Hardware Prototyping. Medical Hardware: Low-field MRI Systems, RF Coil Design, MRI Physics. Edge Computing: Local GPU Inference, Privacy-preserving Deployment." }
+        { category: "AI & Multimodal Systems", items: "Python, PyTorch, CUDA, Florence-2 (VLM), CLIP, DeepSeek (R1), Qwen2.5-VL, Gemini, Claude, NIfTI/DICOM (Nibabel), OpenCV, bitsandbytes" },
+        { category: "Agent & AI Workflow Engineering", items: "Tool Calling, Multi-step Reasoning, First-Principles Prompting, Cursor, Claude Code, OpenAI Codex, Gemini CLI, ComfyUI, LangChain, LangGraph, Gradio, FastAPI, RESTful APIs" },
+        { category: "Creative Technology & Interactive Systems", items: "Unity, Godot, TouchDesigner, HTML5 Canvas, Matter.js, GenAI Pipelines (Text/Image/3D), React, Vue" },
+        { category: "Hardware & Physical Computing", items: "FPGA (Verilog), Signal Processing, PCB Design, Low-field MRI Systems, RF Coil Design, MRI Physics, Edge GPU Deployment" }
       ]
     },
     zh: {
@@ -211,10 +211,10 @@ const CleanResume = ({ onClose }) => {
         }
       ],
       skills: [
-        { category: "AI & 多模态系统", items: "Python, PyTorch, CUDA. 多模态模型: Florence-2 (VLM), SAM / SAM 2, CLIP. 大语言模型: DeepSeek (R1), Qwen2.5-VL, Gemini, Claude. 医学影像: NIfTI / DICOM Processing (Nibabel), OpenCV. 模型优化: bitsandbytes (量化), 混合精度推理." },
-        { category: "智能体 & AI工作流工程", items: "基于智能体的系统: 工具调用, 多步推理, 第一性原理提示. 编程与AI智能体: Cursor, Claude Code, OpenAI Codex, Gemini CLI. AI工作流编排: ComfyUI (自定义节点), LangChain, LangGraph. 模型服务与交互: Gradio, FastAPI, RESTful APIs." },
-        { category: "创意技术与交互系统", items: "游戏引擎: Unity, Godot. 创意编程: TouchDesigner, HTML5 Canvas, Matter.js. 生成式管线: GenAI资产生成 (文本 / 图像 / 3D). 前端框架: React, Vue, 基于Web的交互设计." },
-        { category: "硬件与物理计算", items: "数字与射频系统: FPGA (Verilog), 信号处理. PCB设计与硬件原型. 医疗硬件: 低场MRI系统, 射频线圈设计, MRI物理. 边缘计算: 本地GPU推理, 隐私保护部署." }
+        { category: "AI & 多模态系统", items: "Python, PyTorch, CUDA, Florence-2 (VLM), CLIP, DeepSeek (R1), Qwen2.5-VL, Gemini, Claude, NIfTI/DICOM (Nibabel), OpenCV, bitsandbytes" },
+        { category: "智能体 & AI工作流工程", items: "工具调用, 多步推理, 第一性原理提示, Cursor, Claude Code, OpenAI Codex, Gemini CLI, ComfyUI, LangChain, LangGraph, Gradio, FastAPI, RESTful APIs" },
+        { category: "创意技术与交互系统", items: "Unity, Godot, TouchDesigner, HTML5 Canvas, Matter.js, GenAI管线 (文本/图像/3D), React, Vue" },
+        { category: "硬件与物理计算", items: "FPGA (Verilog), 信号处理, PCB设计, 低场MRI系统, 射频线圈设计, MRI物理, 边缘GPU部署" }
       ]
     }
   };
@@ -236,55 +236,18 @@ const CleanResume = ({ onClose }) => {
     });
   };
 
-  // Helper to render skills text with label-style tags
+  // Helper to render skills text with label-style tags (simplified format)
   const renderSkillsText = (text) => {
-    // Split by periods to get individual items
-    const items = text.split(/\.\s+/).filter(item => item.trim().length > 0);
+    // Now format is simpler: just split by commas and create tags
+    const tags = text.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
     
     return (
-      <div className="space-y-1">
-        {items.map((item, index) => {
-          const trimmedItem = item.trim();
-          
-          // Check if item contains a colon
-          if (trimmedItem.includes(':')) {
-            const colonIndex = trimmedItem.indexOf(':');
-            const beforeColon = trimmedItem.substring(0, colonIndex).trim();
-            const afterColon = trimmedItem.substring(colonIndex + 1).trim();
-            
-            // Split afterColon by commas to create individual tags
-            const tags = afterColon.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-            
-            return (
-              <div key={index} className="space-y-0.5">
-                {/* Label for the category - normal text, NOT code block */}
-                <div className="text-xs font-medium text-slate-800 leading-tight">
-                  {beforeColon}
-                </div>
-                {/* Individual tags for items after colon - SMALLER code blocks */}
-                <div className="flex flex-wrap gap-0.5 pl-2">
-                  {tags.map((tag, tagIndex) => (
-                    <span key={tagIndex} className="text-[9px] font-mono bg-slate-50 px-1 py-0.5 rounded text-slate-500 border border-slate-200">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            );
-          } else {
-            // Item without colon, split by commas and create tags - SMALLER
-            const tags = trimmedItem.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-            return (
-              <div key={index} className="flex flex-wrap gap-0.5">
-                {tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="text-[9px] font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-600">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            );
-          }
-        })}
+      <div className="flex flex-wrap gap-0.5">
+        {tags.map((tag, tagIndex) => (
+          <span key={tagIndex} className="text-[9px] font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-600">
+            {tag}
+          </span>
+        ))}
       </div>
     );
   };
