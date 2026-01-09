@@ -34,7 +34,8 @@ const CleanResume = ({ onClose }) => {
           school: "Nanjing University of Posts & Telecomm",
           degree: "B.Eng. in Electronic Science",
           period: "09/2019 – 06/2023",
-          details: "Core: FPGA Design, Circuits"
+          details: "Core: FPGA Design, Circuits",
+          gpa: "GPA: 4.11/5.0"
         }
       ],
       honors: [
@@ -140,7 +141,8 @@ const CleanResume = ({ onClose }) => {
           school: "南京邮电大学",
           degree: "电子科学与技术 学士",
           period: "2019.09 – 2023.06",
-          details: "核心课程: FPGA设计, 电路系统"
+          details: "核心课程: FPGA设计, 电路系统",
+          gpa: "GPA: 4.11/5.0"
         }
       ],
       honors: [
@@ -381,7 +383,12 @@ const CleanResume = ({ onClose }) => {
                     <h3 className="font-bold text-sm text-slate-900 leading-tight">{edu.school}</h3>
                     <p className="text-xs text-slate-600 font-medium mt-0.5">{edu.degree}</p>
                     <p className="text-[10px] text-slate-400 font-mono mt-0.5">{edu.period}</p>
-                    <p className="text-[10px] text-slate-500 mt-0.5 italic">{edu.details}</p>
+                    {edu.gpa && (
+                      <p className="text-[10px] text-slate-600 font-medium mt-0.5">{edu.gpa}</p>
+                    )}
+                    {edu.details && (
+                      <p className="text-[10px] text-slate-500 mt-0.5 italic">{edu.details}</p>
+                    )}
                   </div>
                 ))}
               </div>
