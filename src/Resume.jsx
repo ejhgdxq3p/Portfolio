@@ -236,53 +236,59 @@ const CleanResume = ({ onClose }) => {
     });
   };
 
-  // Helper to render skills text with gray subtext after colons
+  // Helper to render skills text with label-style tags
   const renderSkillsText = (text) => {
-    const parts = [];
-    let lastIndex = 0;
-    let keyIndex = 0;
-
-    // Find all colons and process text around them
-    const colonMatches = [...text.matchAll(/:\s*/g)];
+    // Split by periods to get individual items
+    const items = text.split(/\.\s+/).filter(item => item.trim().length > 0);
     
-    if (colonMatches.length === 0) {
-      return text; // No colons found, return as is
-    }
-
-    colonMatches.forEach((match, matchIndex) => {
-      const colonPos = match.index;
-      
-      // Add text before colon
-      if (colonPos > lastIndex) {
-        parts.push(
-          <span key={`text-${keyIndex++}`}>{text.substring(lastIndex, colonPos)}</span>
-        );
-      }
-      
-      // Find the end of this section (next period or end of string)
-      const afterColon = text.substring(colonPos + match[0].length);
-      const nextPeriodIndex = afterColon.indexOf('.');
-      const endIndex = nextPeriodIndex !== -1 ? colonPos + match[0].length + nextPeriodIndex + 1 : text.length;
-      const colonContent = text.substring(colonPos + match[0].length, endIndex);
-      
-      // Add colon and content in gray
-      parts.push(
-        <span key={`colon-${keyIndex++}`} className="text-[10px] text-slate-500">
-          : {colonContent}
-        </span>
-      );
-      
-      lastIndex = endIndex;
-    });
-    
-    // Add remaining text after last colon section
-    if (lastIndex < text.length) {
-      parts.push(
-        <span key={`text-${keyIndex++}`}>{text.substring(lastIndex)}</span>
-      );
-    }
-    
-    return <>{parts}</>;
+    return (
+      <div className="space-y-1.5">
+        {items.map((item, index) => {
+          const trimmedItem = item.trim();
+          
+          // Check if item contains a colon
+          if (trimmedItem.includes(':')) {
+            const colonIndex = trimmedItem.indexOf(':');
+            const beforeColon = trimmedItem.substring(0, colonIndex).trim();
+            const afterColon = trimmedItem.substring(colonIndex + 1).trim();
+            
+            // Split afterColon by commas to create individual tags
+            const tags = afterColon.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+            
+            return (
+              <div key={index} className="space-y-1">
+                {/* Label for the category */}
+                <div>
+                  <span className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600 font-medium">
+                    {beforeColon}
+                  </span>
+                </div>
+                {/* Individual tags for items after colon */}
+                <div className="flex flex-wrap gap-1 pl-2">
+                  {tags.map((tag, tagIndex) => (
+                    <span key={tagIndex} className="text-[10px] font-mono bg-slate-50 px-1.5 py-0.5 rounded text-slate-500 border border-slate-200">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          } else {
+            // Item without colon, split by commas and create tags
+            const tags = trimmedItem.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+            return (
+              <div key={index} className="flex flex-wrap gap-1">
+                {tags.map((tag, tagIndex) => (
+                  <span key={tagIndex} className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            );
+          }
+        })}
+      </div>
+    );
   };
 
   return (
@@ -428,10 +434,10 @@ const CleanResume = ({ onClose }) => {
               <div className="space-y-2">
                 {t.skills.map((s, i) => (
                   <div key={i}>
-                    <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-0.5">{s.category}</h3>
-                    <p className="text-xs font-medium text-slate-800 leading-normal border-l-2 border-slate-200 pl-2">
+                    <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-1">{s.category}</h3>
+                    <div className="border-l-2 border-slate-200 pl-2">
                       {renderSkillsText(s.items)}
-                    </p>
+                    </div>
                   </div>
                 ))}
               </div>
