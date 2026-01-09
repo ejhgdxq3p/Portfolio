@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Download, Globe, ArrowLeft, Mail, Phone, Link as LinkIcon, Github, MapPin, Award, ExternalLink } from 'lucide-react';
 
-const CleanResume = () => {
+const CleanResume = ({ onClose }) => {
   const [lang, setLang] = useState('en');
 
   // 内容数据
@@ -236,28 +236,38 @@ const CleanResume = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 p-4 md:p-8 font-sans print:p-0 print:bg-white text-slate-800">
+    <div className="fixed inset-0 z-[100] bg-slate-100 overflow-y-auto print:overflow-visible print:bg-white animate-in slide-in-from-bottom duration-500">
       
       {/* Control Bar */}
-      <div className="fixed top-6 right-6 flex gap-3 print:hidden z-50">
+      <div className="sticky top-0 z-50 flex justify-between items-center p-4 bg-white/80 backdrop-blur-md border-b border-slate-200 print:hidden">
         <button 
-          onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-lg border border-slate-200 hover:bg-slate-50 transition-all text-sm font-medium"
+          onClick={onClose}
+          className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-slate-100 transition-colors text-slate-600 font-medium"
         >
-          <Globe size={16} />
-          {lang === 'en' ? '中文' : 'English'}
+          <ArrowLeft size={18} />
+          Back to Portfolio
         </button>
-        <button 
-          onClick={handlePrint}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white shadow-lg hover:bg-slate-800 transition-all text-sm font-medium"
-        >
-          <Download size={16} />
-          Save PDF
-        </button>
+        
+        <div className="flex gap-3">
+          <button 
+            onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-lg border border-slate-200 hover:bg-slate-50 transition-all text-sm font-medium"
+          >
+            <Globe size={16} />
+            {lang === 'en' ? '中文' : 'English'}
+          </button>
+          <button 
+            onClick={handlePrint}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white shadow-lg hover:bg-slate-800 transition-all text-sm font-medium"
+          >
+            <Download size={16} />
+            Save PDF
+          </button>
+        </div>
       </div>
 
-      {/* A4 Paper Container */}
-      <div className="max-w-[210mm] mx-auto bg-white shadow-2xl print:shadow-none min-h-[297mm] p-[12mm] md:p-[15mm] relative">
+      {/* A4 Resume Page */}
+      <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[15mm] text-slate-800 font-sans leading-relaxed selection:bg-slate-900 selection:text-white">
         
         {/* HEADER */}
         <header className="border-b-2 border-slate-900 pb-5 mb-6">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sun, Moon, Github, Twitter, Mail, ArrowRight, Zap, Waves, Plus } from 'lucide-react';
-import Resume from './Resume';
+import CleanResume from './Resume';
 
 /**
  * 缓动函数
@@ -241,10 +241,12 @@ const App = () => {
     <div className={`min-h-screen transition-colors duration-1000 font-sans overflow-hidden ${darkMode ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-900'}`}>
       
       {activeProject === '01' && (
-        <Resume onClose={() => setActiveProject(null)} />
+        <CleanResume onClose={() => setActiveProject(null)} />
       )}
 
-      <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
+      {!activeProject && (
+        <>
+          <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
 
       {/* 动态悬浮缩略图 (洋气核心) */}
       {hoveredProject && !activeProject && (
@@ -333,6 +335,8 @@ const App = () => {
           <span className="text-[10px] font-black tracking-[0.2em] uppercase">Tide Balance</span>
         </div>
       </div>
+        </>
+      )}
 
     </div>
   );
