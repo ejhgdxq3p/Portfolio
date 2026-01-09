@@ -242,7 +242,7 @@ const CleanResume = ({ onClose }) => {
     const items = text.split(/\.\s+/).filter(item => item.trim().length > 0);
     
     return (
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         {items.map((item, index) => {
           const trimmedItem = item.trim();
           
@@ -256,17 +256,15 @@ const CleanResume = ({ onClose }) => {
             const tags = afterColon.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
             
             return (
-              <div key={index} className="space-y-1">
-                {/* Label for the category */}
-                <div>
-                  <span className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600 font-medium">
-                    {beforeColon}
-                  </span>
+              <div key={index} className="space-y-0.5">
+                {/* Label for the category - normal text, NOT code block */}
+                <div className="text-xs font-medium text-slate-800 leading-tight">
+                  {beforeColon}
                 </div>
-                {/* Individual tags for items after colon */}
-                <div className="flex flex-wrap gap-1 pl-2">
+                {/* Individual tags for items after colon - SMALLER code blocks */}
+                <div className="flex flex-wrap gap-0.5 pl-2">
                   {tags.map((tag, tagIndex) => (
-                    <span key={tagIndex} className="text-[10px] font-mono bg-slate-50 px-1.5 py-0.5 rounded text-slate-500 border border-slate-200">
+                    <span key={tagIndex} className="text-[9px] font-mono bg-slate-50 px-1 py-0.5 rounded text-slate-500 border border-slate-200">
                       {tag}
                     </span>
                   ))}
@@ -274,12 +272,12 @@ const CleanResume = ({ onClose }) => {
               </div>
             );
           } else {
-            // Item without colon, split by commas and create tags
+            // Item without colon, split by commas and create tags - SMALLER
             const tags = trimmedItem.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
             return (
-              <div key={index} className="flex flex-wrap gap-1">
+              <div key={index} className="flex flex-wrap gap-0.5">
                 {tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600">
+                  <span key={tagIndex} className="text-[9px] font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-600">
                     {tag}
                   </span>
                 ))}
