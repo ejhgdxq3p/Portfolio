@@ -16,7 +16,7 @@ const CleanResume = () => {
         github: "github.com/ejhgdxq3p",
         location: "Beijing, China"
       },
-      summary: "An electronics engineer and creative technologist bridging the chasm between hardware precision and AI creativity. From building low-field MRI systems to deploying bio-hacking agents, I develop full-stack solutions to **gamify reality**. I am dedicated to defining a future where Game dynamics and AI dissolve the boundaries of human interaction.",
+      summary: "An electronics engineer passionate about bridging hardware precision and interactive software. I build systems—from MRI scanners to AI agents—to explore how technology can enhance, not replace, real-world human connection. My goal is to create 'playful' interfaces that make complex data accessible and physical interactions more meaningful.",
       sectionTitles: {
         education: "Education",
         honors: "Honors & Awards",
@@ -29,7 +29,7 @@ const CleanResume = () => {
           school: "Peking University",
           degree: "M.Sc. in Electronics & Information",
           period: "09/2023 – 06/2026 (Expected)",
-          details: "GPA: Top 10% | Core: Digital Signal Processing, Deep Learning"
+          details: ""
         },
         {
           school: "Nanjing University of Posts & Telecomm",
@@ -63,11 +63,11 @@ const CleanResume = () => {
         },
         {
           title: "Adventure X: \"What Makes Us Human\"",
-          role: "Lead Interaction Designer",
-          tags: ["IoT", "WeChat Mini-app", "Social Design"],
+          role: "Lead Software Engineer (2-Person Team)",
+          tags: ["IoT", "WeChat Mini-app", "Full-stack"],
           items: [
-            "Designed a 'Phygital' social interface utilizing **IoT sensors** and **real-time synchronization**.",
-            "Solved the 'social friction' problem by gamifying ice-breaking interactions in physical spaces."
+            "Solely responsible for the **entire software stack** (Mini-program & IoT logic) in a compact 2-person team.",
+            "Designed a 'Phygital' social interface to gamify ice-breaking interactions in physical spaces."
           ]
         },
         {
@@ -121,7 +121,7 @@ const CleanResume = () => {
         github: "github.com/ejhgdxq3p",
         location: "中国 北京"
       },
-      summary: "一位致力于弥合硬件精度与AI创造力鸿沟的电子工程师。从构建核磁共振系统到部署AI智能体，我开发全栈解决方案以**游戏化现实**。我致力于探索游戏动力学与人工智能如何消融人机交互的边界。",
+      summary: "一名热衷于连接硬件精度与交互软件的电子工程师。从构建核磁共振系统到开发AI智能体，我致力于探索技术如何增强而非替代真实的人际连接。我的目标是创造'游戏化'的接口，让复杂数据变得易懂，让物理交互更具意义。",
       sectionTitles: {
         education: "教育背景",
         honors: "荣誉奖项",
@@ -134,7 +134,7 @@ const CleanResume = () => {
           school: "北京大学",
           degree: "电子信息 硕士",
           period: "2023.09 – 2026.06 (预计)",
-          details: "GPA: 前10% | 核心课程: 数字信号处理, 深度学习"
+          details: ""
         },
         {
           school: "南京邮电大学",
@@ -168,11 +168,11 @@ const CleanResume = () => {
         },
         {
           title: "Adventure X: \"何以为人\"",
-          role: "首席交互设计",
-          tags: ["IoT", "微信小程序", "社交设计"],
+          role: "软件负责人 (2人团队)",
+          tags: ["IoT", "微信小程序", "全栈开发"],
           items: [
-            "设计了一套融合 **IoT传感器** 与 **实时同步** 技术的'虚实结合'社交接口。",
-            "通过游戏化机制解决线下空间的'社交摩擦'问题，获黑客松全场大奖。"
+            "在2人团队中独立负责**全部软件栈**（小程序前端+IoT逻辑）的设计与实现。",
+            "设计了一套融合IoT与实时的'虚实结合'接口，解决线下社交破冰问题。"
           ]
         },
         {
