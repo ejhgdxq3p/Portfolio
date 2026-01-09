@@ -39,7 +39,7 @@ const CleanResume = ({ onClose }) => {
       ],
       honors: [
         {
-          title: "Winner, Douyin AI Changemaker Plan",
+          title: "Winner, TikTok AI Changemaker Plan",
           event: "IntuitionX Hackathon 2026",
           desc: "Awarded for 'True Formula' AI Agent (Software Track)."
         },
@@ -57,7 +57,7 @@ const CleanResume = ({ onClose }) => {
           items: [
             "Created a 'Digital Pharmacist' agent parsing unstructured videos into scientific schedules using **First Principles Reasoning**.",
             "Integrated **DeepSeek R1** (Logic) and **Qwen2.5-VL** (Vision) to detect pharmacological conflicts.",
-            "**Impact:** Validated by Douyin AI Changemaker Plan; transformed health management into a gamified quest."
+            "**Impact:** Validated by TikTok AI Changemaker Plan; transformed health management into a gamified quest."
           ]
         },
         {
@@ -143,7 +143,7 @@ const CleanResume = ({ onClose }) => {
       ],
       honors: [
         {
-          title: "优胜奖, 抖音AI创变者计划",
+          title: "优胜奖, TikTok AI创变者计划",
           event: "IntuitionX 2026",
           desc: "凭借'真成分'AI智能体获奖 (软件赛道)。"
         },
@@ -161,7 +161,7 @@ const CleanResume = ({ onClose }) => {
           items: [
             "开发'数字药剂师'智能体，利用**第一性原理推理**将短视频解析为科学营养计划。",
             "集成 **DeepSeek R1** (推理) 和 **Qwen2.5-VL** (视觉) 检测药理冲突。",
-            "**影响：** 获抖音AI创变者计划验证；将被动内容消费转化为游戏化健康任务。"
+            "**影响：** 获TikTok AI创变者计划验证；将被动内容消费转化为游戏化健康任务。"
           ]
         },
         {
@@ -265,7 +265,7 @@ const CleanResume = ({ onClose }) => {
       </div>
 
       {/* A4 Paper Container */}
-      <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[12mm] relative">
+      <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[12mm] relative print:w-[210mm] print:max-w-[210mm]">
         
         {/* COMPACT HEADER */}
         <header className="border-b-2 border-slate-900 pb-4 mb-6 flex justify-between items-end">
@@ -291,7 +291,7 @@ const CleanResume = ({ onClose }) => {
         <div className="grid grid-cols-12 gap-6">
           
           {/* LEFT COLUMN (MAIN CONTENT) - 8/12 */}
-          <div className="col-span-12 md:col-span-8 space-y-6">
+          <div className="col-span-12 md:col-span-8 print:col-span-8 space-y-6">
             
             {/* Honors */}
             <section>
@@ -349,7 +349,7 @@ const CleanResume = ({ onClose }) => {
           </div>
 
           {/* RIGHT COLUMN (SIDEBAR) - 4/12 */}
-          <div className="col-span-12 md:col-span-4 space-y-6">
+          <div className="col-span-12 md:col-span-4 print:col-span-4 space-y-6">
             
             {/* Education */}
             <section>
@@ -416,6 +416,19 @@ const CleanResume = ({ onClose }) => {
         </div>
 
       </div>
+      
+      <style>{`
+        @media print {
+          @page {
+            size: A4;
+            margin: 0;
+          }
+          body {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
+        }
+      `}</style>
     </div>
   );
 };
