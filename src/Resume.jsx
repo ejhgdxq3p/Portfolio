@@ -11,12 +11,11 @@ const CleanResume = ({ onClose }) => {
       tagline: "Electronics Engineer & Creative Technologist",
       contact: {
         phone: "+86 177 6928 7607",
-        email: "2717177316@qq.com", // Updated based on uploaded file
+        email: "2717177316@qq.com",
         portfolio: "Portfolio Link",
         github: "github.com/ejhgdxq3p",
         location: "Beijing, China"
       },
-      summary: "An electronics engineer passionate about bridging hardware precision and interactive software. I build systems—from MRI scanners to AI agents—to explore how technology can enhance, not replace, real-world human connection. My goal is to create 'playful' interfaces that make complex data accessible and physical interactions more meaningful.",
       sectionTitles: {
         education: "Education",
         honors: "Honors & Awards",
@@ -28,7 +27,7 @@ const CleanResume = ({ onClose }) => {
         {
           school: "Peking University",
           degree: "M.Sc. in Electronics & Information",
-          period: "09/2023 – 06/2026 (Expected)",
+          period: "09/2023 – 06/2026",
           details: ""
         },
         {
@@ -121,7 +120,6 @@ const CleanResume = ({ onClose }) => {
         github: "github.com/ejhgdxq3p",
         location: "中国 北京"
       },
-      summary: "一名热衷于连接硬件精度与交互软件的电子工程师。从构建核磁共振系统到开发AI智能体，我致力于探索技术如何增强而非替代真实的人际连接。我的目标是创造'游戏化'的接口，让复杂数据变得易懂，让物理交互更具意义。",
       sectionTitles: {
         education: "教育背景",
         honors: "荣誉奖项",
@@ -133,7 +131,7 @@ const CleanResume = ({ onClose }) => {
         {
           school: "北京大学",
           degree: "电子信息 硕士",
-          period: "2023.09 – 2026.06 (预计)",
+          period: "2023.09 – 2026.06",
           details: ""
         },
         {
@@ -266,45 +264,34 @@ const CleanResume = ({ onClose }) => {
         </div>
       </div>
 
-      {/* A4 Resume Page */}
-      <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[15mm] text-slate-800 font-sans leading-relaxed selection:bg-slate-900 selection:text-white">
+      {/* A4 Paper Container */}
+      <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[12mm] relative">
         
-        {/* HEADER */}
-        <header className="border-b-2 border-slate-900 pb-5 mb-6">
-          <h1 className="text-4xl font-black uppercase tracking-tight text-slate-900 mb-2">{t.name}</h1>
-          <p className="text-xl font-light text-slate-600 mb-4">{t.tagline}</p>
+        {/* COMPACT HEADER */}
+        <header className="border-b-2 border-slate-900 pb-4 mb-6 flex justify-between items-end">
+          <div>
+            <h1 className="text-3xl font-black uppercase tracking-tight text-slate-900 leading-none mb-1">{t.name}</h1>
+            <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">{t.tagline}</p>
+          </div>
           
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 font-medium">
-             <div className="flex items-center gap-1.5">
-               <Phone size={14} className="text-slate-400" /> {t.contact.phone}
+          <div className="text-right text-xs text-slate-600 font-medium space-y-1">
+             <div className="flex items-center justify-end gap-3">
+               <span className="flex items-center gap-1"><Phone size={12} className="text-slate-400" /> {t.contact.phone}</span>
+               <span className="flex items-center gap-1"><Mail size={12} className="text-slate-400" /> {t.contact.email}</span>
+               <span className="flex items-center gap-1"><MapPin size={12} className="text-slate-400" /> {t.contact.location}</span>
              </div>
-             <div className="flex items-center gap-1.5">
-               <Mail size={14} className="text-slate-400" /> {t.contact.email}
-             </div>
-             <div className="flex items-center gap-1.5">
-               <MapPin size={14} className="text-slate-400" /> {t.contact.location}
-             </div>
-             <div className="flex items-center gap-1.5">
-               <ExternalLink size={14} className="text-slate-400" /> {t.contact.portfolio}
-             </div>
-             <div className="flex items-center gap-1.5">
-               <Github size={14} className="text-slate-400" /> {t.contact.github}
+             <div className="flex items-center justify-end gap-3">
+               <span className="flex items-center gap-1"><ExternalLink size={12} className="text-slate-400" /> {t.contact.portfolio}</span>
+               <span className="flex items-center gap-1"><Github size={12} className="text-slate-400" /> {t.contact.github}</span>
              </div>
           </div>
         </header>
 
-        {/* PROFILE SUMMARY */}
-        <section className="mb-8">
-          <p className="text-sm leading-relaxed text-justify text-slate-700">
-            {renderText(t.summary)}
-          </p>
-        </section>
-
         {/* MAIN LAYOUT: 2 COLUMNS */}
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-6">
           
           {/* LEFT COLUMN (MAIN CONTENT) - 8/12 */}
-          <div className="col-span-12 md:col-span-8 space-y-7">
+          <div className="col-span-12 md:col-span-8 space-y-6">
             
             {/* Honors */}
             <section>
@@ -362,7 +349,7 @@ const CleanResume = ({ onClose }) => {
           </div>
 
           {/* RIGHT COLUMN (SIDEBAR) - 4/12 */}
-          <div className="col-span-12 md:col-span-4 space-y-8">
+          <div className="col-span-12 md:col-span-4 space-y-6">
             
             {/* Education */}
             <section>
