@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sun, Moon, Github, Twitter, Mail, ArrowRight, Zap, Waves } from 'lucide-react';
+import { Sun, Moon, Github, Twitter, Mail, ArrowRight, Zap, Waves, Plus } from 'lucide-react';
+import Resume from './Resume';
 
 /**
  * 缓动函数
@@ -25,7 +26,7 @@ class Tape {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
     this.isDarkMode = isDarkMode;
-    this.rhythmMode = rhythmMode; // 'BURST' 或 'TIDE'
+    this.rhythmMode = rhythmMode;
     this.reset(targetData);
   }
 
@@ -33,7 +34,6 @@ class Tape {
     this.isPatternPart = !!targetData;
     const scale = Math.min(this.canvasWidth, this.canvasHeight);
     
-    // 极致荧光洋气配色
     const lightPalette = ['#002FA7', '#FF007F', '#39FF14', '#FFD300', '#00FFFF', '#FF5F15', '#FF0000'];
     const darkPalette = ['#00FFFF', '#FF00FF', '#CCFF00', '#FFFFFF', '#FF3300', '#7000FF', '#00FF00'];
     const palette = this.isDarkMode ? darkPalette : lightPalette;
@@ -57,8 +57,6 @@ class Tape {
     this.progress = 0;
     this.state = 'growing';
     
-    // 潮汐调松逻辑：
-    // TIDE 模式不再"慢死"，稍微轻快一点，停留也短一点
     if (this.rhythmMode === 'TIDE') {
       this.growthSpeed = 0.005 + Math.random() * 0.006; 
       this.shrinkSpeed = 0.012;
@@ -88,7 +86,7 @@ class Tape {
       }
     } else if (this.state === 'shrinking') {
       this.progress += this.shrinkSpeed;
-      if (this.progress >= 1) return true; // 销毁
+      if (this.progress >= 1) return true;
     }
     return false;
   }
@@ -97,7 +95,6 @@ class Tape {
     ctx.save();
     ctx.translate(this.centerX, this.centerY);
     ctx.rotate(this.angle);
-    
     ctx.globalCompositeOperation = this.isDarkMode ? 'screen' : 'multiply';
     ctx.fillStyle = this.color;
     ctx.globalAlpha = this.isDarkMode ? 0.85 : 0.75;
@@ -138,14 +135,55 @@ class Tape {
   }
 }
 
+const ProjectItem = ({ id, title, tags, darkMode, onHover, onClick }) => (
+  <div 
+    className="group relative border-b border-current py-6 md:py-8 cursor-pointer overflow-hidden"
+    onMouseEnter={() => onHover(id)}
+    onMouseLeave={() => onHover(null)}
+    onClick={onClick}
+  >
+    <div className="flex justify-between items-end relative z-10">
+      <div className="flex items-start gap-4">
+        <span className="text-xl font-black opacity-30 italic leading-none">{id}</span>
+        <div>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none group-hover:italic transition-all duration-300">
+            {title}
+          </h3>
+          <div className="flex gap-2 mt-2">
+            {tags.map(tag => (
+              <span key={tag} className="text-[10px] font-black uppercase tracking-widest opacity-50 border border-current px-1">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="transform translate-x-10 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all">
+        <Plus size={40} strokeWidth={3} />
+      </div>
+    </div>
+    {/* Hover时的色块装饰（像胶带贴上去） */}
+    <div className={`absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 opacity-20 -z-0 ${darkMode ? 'bg-white' : 'bg-blue-600'}`}></div>
+  </div>
+);
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [rhythm, setRhythm] = useState('BURST'); // 'BURST' 或 'TIDE'
+  const [rhythm, setRhythm] = useState('BURST');
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
   const canvasRef = useRef(null);
   const tapes = useRef([]);
   const patternIndex = useRef(0);
 
-  // 15秒切换一次律动
+  const projects = [
+    { id: '01', title: 'Resume / CV', tags: ['Identity', 'System'], img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800' },
+    { id: '02', title: 'Cyber Mesh', tags: ['WebGL', 'Branding'], img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800' },
+    { id: '03', title: 'Tape Lab', tags: ['Interactive', 'UI'], img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800' },
+    { id: '04', title: 'Acid Type', tags: ['Typography'], img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800' },
+    { id: '05', title: 'Raw Grid', tags: ['System Design'], img: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800' },
+  ];
+
   useEffect(() => {
     const timer = setInterval(() => {
       setRhythm(prev => prev === 'BURST' ? 'TIDE' : 'BURST');
@@ -178,22 +216,15 @@ const App = () => {
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // 调松逻辑：
-      // TIDE: 之前是 28，现在调低到 13，这样不仅有堆叠感，背景也能透出来，不至于太堵。
-      // BURST: 稍微调稀一点点到 5
       const targetCount = rhythm === 'TIDE' ? 13 : 5;
-      
       if (tapes.current.filter(t => !t.isPatternPart).length < targetCount) {
         tapes.current.push(new Tape(canvas.width, canvas.height, darkMode, rhythm));
       }
-
       tapes.current = tapes.current.filter(tape => {
         const shouldDestroy = tape.update();
         tape.draw(ctx);
         return !shouldDestroy;
       });
-
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -209,7 +240,25 @@ const App = () => {
   return (
     <div className={`min-h-screen transition-colors duration-1000 font-sans overflow-hidden ${darkMode ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-900'}`}>
       
+      {activeProject === '01' && (
+        <Resume onClose={() => setActiveProject(null)} />
+      )}
+
       <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
+
+      {/* 动态悬浮缩略图 (洋气核心) */}
+      {hoveredProject && !activeProject && (
+        <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center p-20 animate-in fade-in zoom-in duration-500">
+           <div className="relative w-full max-w-2xl aspect-video rotate-3 overflow-hidden border-[12px] border-white shadow-2xl">
+              <img 
+                src={projects.find(p => p.id === hoveredProject)?.img} 
+                className="w-full h-full object-cover grayscale brightness-110 contrast-125"
+                alt="preview"
+              />
+              <div className="absolute inset-0 mix-blend-multiply bg-blue-600/30"></div>
+           </div>
+        </div>
+      )}
 
       {/* Rhythmic Nav */}
       <nav className="fixed top-0 w-full p-8 md:p-12 flex justify-between items-start z-50 mix-blend-difference text-white">
@@ -217,10 +266,10 @@ const App = () => {
           <div className="flex items-center gap-3">
             {rhythm === 'BURST' ? <Zap size={16} className="text-yellow-400 fill-yellow-400" /> : <Waves size={16} className="text-cyan-400" />}
             <span className="text-[10px] font-black tracking-[0.4em] uppercase opacity-70">
-               MODE: {rhythm} // DENSITY: {rhythm === 'TIDE' ? 'MEDIUM-HIGH' : 'LOW'}
+               MODE: {rhythm} // FLOW: ACTIVE
             </span>
           </div>
-          <span className="text-6xl font-black tracking-tighter leading-none">VIVID.LAB</span>
+          <span className="text-5xl font-black tracking-tighter leading-none">ARCHIVE.</span>
         </div>
         <button 
           onClick={() => setDarkMode(!darkMode)}
@@ -231,31 +280,49 @@ const App = () => {
       </nav>
 
       <main className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-24">
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          <div className="lg:col-span-8 space-y-8">
-            <h1 className="text-[15vw] lg:text-[14rem] font-black leading-[0.75] tracking-tighter uppercase italic">
-              Hyper<br/>
-              <span className="text-transparent" style={{ WebkitTextStroke: darkMode ? '2px white' : '2px black' }}>Fluoro.</span>
+          {/* 左侧：宣言与标题 */}
+          <div className="lg:col-span-5 space-y-12">
+            <h1 className="text-[12vw] lg:text-[10rem] font-black leading-[0.75] tracking-tighter uppercase italic">
+              New<br/>
+              <span className="text-transparent" style={{ WebkitTextStroke: darkMode ? '2px white' : '2px black' }}>Order.</span>
             </h1>
-            <p className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.0] max-w-2xl">
-              在极速迸发与呼吸堆叠之间，捕捉视觉的洋气感。
+            <p className="text-2xl md:text-4xl font-bold tracking-tight leading-[1.1] max-w-sm opacity-80">
+              捕捉高饱和度下的视觉节奏，让随机性重塑秩序。
             </p>
+            <div className="flex gap-4 pt-10">
+               <div className="w-12 h-12 border-2 border-current flex items-center justify-center"><Github size={20} /></div>
+               <div className="w-12 h-12 border-2 border-current flex items-center justify-center"><Twitter size={20} /></div>
+            </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-8 lg:pt-32">
-             <button className={`group w-full py-12 border-4 flex flex-col justify-between items-start px-8 transition-all ${darkMode ? 'border-white hover:bg-white hover:text-black' : 'border-black hover:bg-black hover:text-white'}`}>
-                <span className="text-xs font-black mb-16 tracking-[0.6em]">COLLECTIONS</span>
-                <div className="w-full flex justify-between items-center">
-                  <span className="text-5xl font-black italic">VIBE.</span>
-                  <ArrowRight size={48} className="group-hover:translate-x-4 transition-transform" />
-                </div>
+          {/* 右侧：项目列表（错落排版） */}
+          <div className="lg:col-span-7 flex flex-col space-y-4 lg:pt-20">
+             <div className="text-xs font-black tracking-[0.5em] uppercase opacity-40 mb-6 flex items-center gap-4">
+               <div className="h-[1px] flex-1 bg-current opacity-20"></div>
+               Selected Work (2024-2026)
+             </div>
+             
+             {projects.map((proj, index) => (
+               <div key={proj.id} style={{ paddingLeft: `${index * 10}%` }}>
+                 <ProjectItem 
+                    {...proj} 
+                    darkMode={darkMode} 
+                    onHover={setHoveredProject} 
+                    onClick={() => proj.id === '01' ? setActiveProject('01') : null}
+                 />
+               </div>
+             ))}
+             
+             <button className="group mt-12 py-8 flex items-center gap-6 text-2xl font-black italic hover:gap-10 transition-all">
+                GET IN TOUCH <ArrowRight size={40} />
              </button>
           </div>
         </div>
       </main>
 
-      {/* Density Indicator */}
+      {/* Indicator */}
       <div className="fixed bottom-12 left-12 mix-blend-difference text-white flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <div className={`h-1.5 transition-all duration-1000 ${rhythm === 'BURST' ? 'w-48 bg-yellow-400' : 'w-12 bg-white opacity-20'}`}></div>
@@ -265,11 +332,6 @@ const App = () => {
           <div className={`h-1.5 transition-all duration-1000 ${rhythm === 'TIDE' ? 'w-48 bg-cyan-400' : 'w-12 bg-white opacity-20'}`}></div>
           <span className="text-[10px] font-black tracking-[0.2em] uppercase">Tide Balance</span>
         </div>
-      </div>
-      
-      <div className="fixed bottom-12 right-12 hidden md:flex flex-col items-end gap-2 opacity-40 mix-blend-difference text-white text-[10px] font-black tracking-[0.5em] uppercase">
-        <span>Raw Design Unit</span>
-        <span>©2026 Studio.V2</span>
       </div>
 
     </div>
