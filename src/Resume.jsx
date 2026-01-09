@@ -236,6 +236,55 @@ const CleanResume = ({ onClose }) => {
     });
   };
 
+  // Helper to render skills text with gray subtext after colons
+  const renderSkillsText = (text) => {
+    const parts = [];
+    let lastIndex = 0;
+    let keyIndex = 0;
+
+    // Find all colons and process text around them
+    const colonMatches = [...text.matchAll(/:\s*/g)];
+    
+    if (colonMatches.length === 0) {
+      return text; // No colons found, return as is
+    }
+
+    colonMatches.forEach((match, matchIndex) => {
+      const colonPos = match.index;
+      
+      // Add text before colon
+      if (colonPos > lastIndex) {
+        parts.push(
+          <span key={`text-${keyIndex++}`}>{text.substring(lastIndex, colonPos)}</span>
+        );
+      }
+      
+      // Find the end of this section (next period or end of string)
+      const afterColon = text.substring(colonPos + match[0].length);
+      const nextPeriodIndex = afterColon.indexOf('.');
+      const endIndex = nextPeriodIndex !== -1 ? colonPos + match[0].length + nextPeriodIndex + 1 : text.length;
+      const colonContent = text.substring(colonPos + match[0].length, endIndex);
+      
+      // Add colon and content in gray
+      parts.push(
+        <span key={`colon-${keyIndex++}`} className="text-[10px] text-slate-500">
+          : {colonContent}
+        </span>
+      );
+      
+      lastIndex = endIndex;
+    });
+    
+    // Add remaining text after last colon section
+    if (lastIndex < text.length) {
+      parts.push(
+        <span key={`text-${keyIndex++}`}>{text.substring(lastIndex)}</span>
+      );
+    }
+    
+    return <>{parts}</>;
+  };
+
   return (
     <div className="fixed inset-0 z-[100] bg-slate-100 overflow-y-auto print:overflow-visible print:bg-white animate-in slide-in-from-bottom duration-500">
       
@@ -381,7 +430,7 @@ const CleanResume = ({ onClose }) => {
                   <div key={i}>
                     <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-0.5">{s.category}</h3>
                     <p className="text-xs font-medium text-slate-800 leading-normal border-l-2 border-slate-200 pl-2">
-                      {s.items}
+                      {renderSkillsText(s.items)}
                     </p>
                   </div>
                 ))}
