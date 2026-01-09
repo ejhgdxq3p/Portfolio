@@ -9,8 +9,8 @@ const Resume = ({ onClose }) => {
       name: "Yu YAO",
       tagline: "Electronics Engineer & Creative Technologist",
       contact: {
-        phone: "+86 1XX XXXX XXXX",
-        email: "your.email@example.com",
+        phone: "+86 177 6928 7607",
+        email: "39asdfghjkl39@gmail.com",
         portfolio: "Portfolio",
         github: "GitHub"
       },
@@ -100,11 +100,11 @@ const Resume = ({ onClose }) => {
       ]
     },
     zh: {
-      name: "姚 宇",
+      name: "姚 雨",
       tagline: "电子工程师 & 创意技术专家",
       contact: {
-        phone: "+86 1XX XXXX XXXX",
-        email: "your.email@example.com",
+        phone: "+86 177 6928 7607",
+        email: "39asdfghjkl39@gmail.com",
         portfolio: "Portfolio",
         github: "GitHub"
       },
@@ -119,7 +119,7 @@ const Resume = ({ onClose }) => {
       education: [
         {
           school: "北京大学",
-          degree: "电子与通信工程 硕士",
+          degree: "电子信息 硕士",
           period: "2023.09 – 2026.06 (预计)"
         },
         {
@@ -132,7 +132,7 @@ const Resume = ({ onClose }) => {
         {
           title: "优胜奖, 抖音AI创新者计划 (软件赛道)",
           event: "IntuitionX 极客马拉松 2026",
-          desc: "凭借\"真理公式\" AI代理获奖，因在健康游戏化中创新应用多模态大模型而受到认可。"
+          desc: "凭借\"真成分\" AI代理获奖，因在健康游戏化中创新应用多模态大模型而受到认可。"
         },
         {
           title: "特等奖, Adventure X 2025",
@@ -142,7 +142,7 @@ const Resume = ({ onClose }) => {
       ],
       projects: [
         {
-          title: "真理公式：AI生物黑客代理",
+          title: "真成分：AI生物黑客代理",
           role: "独立开发 & 设计",
           items: [
             "**概念：** 创建了一个\"数字药剂师\"代理，利用**第一性原理推理**将非结构化短视频解析为科学的营养计划。",
