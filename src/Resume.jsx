@@ -70,12 +70,13 @@ const CleanResume = ({ onClose }) => {
           ]
         },
         {
-          title: "NeuroVoxel: Edge-AI Medical Segmentation",
-          role: "Solo Researcher",
-          tags: ["Medical AI", "Privacy", "Edge Computing"],
+          title: "The Smiling Man",
+          role: "Solo Game Developer",
+          tags: ["Meta-Horror", "Matter.js", "Narrative"],
           items: [
-            "Built an offline, privacy-first medical 'Copilot' deploying **Florence-2** and **SAM 2** on consumer GPUs (RTX 4090).",
-            "Achieved **Zero-shot organ localization** with <3s latency, bypassing cloud API privacy risks."
+            "Developed an experimental meta-horror puzzle game using **HTML5 Canvas** and **Matter.js**.",
+            "Designed a 'Window-as-Controller' mechanic where players manipulate UI containers to interact with an eldritch entity.",
+            "Explored the boundaries of web-based interactive storytelling."
           ]
         },
         {
@@ -88,12 +89,12 @@ const CleanResume = ({ onClose }) => {
           ]
         },
         {
-          title: "The Smiling Man",
-          role: "Solo Game Developer",
-          tags: ["Meta-Horror", "Matter.js", "Narrative"],
+          title: "NeuroVoxel: Edge-AI Medical Segmentation",
+          role: "Solo Researcher",
+          tags: ["Medical AI", "Privacy", "Edge Computing"],
           items: [
-            "Developed an experimental meta-horror puzzle game using **HTML5 Canvas** and **Matter.js**.",
-            "Designed a 'Window-as-Controller' mechanic to explore narrative boundaries and player agency."
+            "Built an offline, privacy-first medical 'Copilot' deploying **Florence-2** and **SAM 2** on consumer GPUs.",
+            "Achieved **Zero-shot organ localization** with <3s latency, bypassing cloud API privacy risks."
           ]
         }
       ],
@@ -174,12 +175,12 @@ const CleanResume = ({ onClose }) => {
           ]
         },
         {
-          title: "NeuroVoxel: 边缘AI医疗分割",
-          role: "独立研究员",
-          tags: ["医疗 AI", "隐私计算", "边缘计算"],
+          title: "笑面人 (The Smiling Man)",
+          role: "独立游戏开发",
+          tags: ["元恐怖", "Matter.js", "叙事"],
           items: [
-            "构建离线、隐私优先的医疗 Copilot，在消费级显卡(4090)上部署 **Florence-2** 和 **SAM 2**。",
-            "实现**零样本(Zero-shot)器官定位**，延迟<3秒，解决医院数据隐私痛点。"
+            "使用 **HTML5 Canvas** 和 **Matter.js** 开发的实验性元恐怖解谜游戏。",
+            "设计了'窗口即控制器'的机制，探索网页端叙事边界与玩家能动性。"
           ]
         },
         {
@@ -192,12 +193,12 @@ const CleanResume = ({ onClose }) => {
           ]
         },
         {
-          title: "笑面人 (The Smiling Man)",
-          role: "独立游戏开发",
-          tags: ["元恐怖", "Matter.js", "叙事"],
+          title: "NeuroVoxel: 边缘AI医疗分割",
+          role: "独立研究员",
+          tags: ["医疗 AI", "隐私计算", "边缘计算"],
           items: [
-            "使用 **HTML5 Canvas** 和 **Matter.js** 开发的实验性元恐怖解谜游戏。",
-            "设计了'窗口即控制器'的机制，探索网页端叙事边界与玩家能动性。"
+            "构建离线、隐私优先的医疗 Copilot，在消费级显卡上部署 **Florence-2** 和 **SAM 2**。",
+            "实现**零样本(Zero-shot)器官定位**，延迟<3秒，解决医院数据隐私痛点。"
           ]
         }
       ],
@@ -268,7 +269,7 @@ const CleanResume = ({ onClose }) => {
       <div className="max-w-[210mm] mx-auto my-8 bg-white shadow-2xl print:shadow-none print:m-0 min-h-[297mm] p-[10mm] md:p-[12mm] relative print:w-[210mm] print:max-w-[210mm]">
         
         {/* COMPACT HEADER */}
-        <header className="border-b-2 border-slate-900 pb-4 mb-6 flex justify-between items-end">
+        <header className="border-b-2 border-slate-900 pb-4 mb-5 flex justify-between items-end">
           <div>
             <h1 className="text-3xl font-black uppercase tracking-tight text-slate-900 leading-none mb-1">{t.name}</h1>
             <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">{t.tagline}</p>
@@ -291,21 +292,21 @@ const CleanResume = ({ onClose }) => {
         <div className="grid grid-cols-12 gap-6">
           
           {/* LEFT COLUMN (MAIN CONTENT) - 8/12 */}
-          <div className="col-span-12 md:col-span-8 print:col-span-8 space-y-6">
+          <div className="col-span-12 md:col-span-8 print:col-span-8 space-y-5">
             
             {/* Honors */}
             <section>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 pb-1 flex items-center gap-2">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-100 pb-1 flex items-center gap-2">
                 <Award size={14} /> {t.sectionTitles.honors}
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {t.honors.map((h, i) => (
-                  <div key={i} className="bg-slate-50 p-3 rounded-lg border border-slate-100 print:border-slate-200">
+                  <div key={i} className="bg-slate-50 p-2.5 rounded-lg border border-slate-100 print:border-slate-200">
                     <div className="flex justify-between items-start">
                       <h3 className="font-bold text-sm text-slate-900">{h.title}</h3>
                       <span className="text-xs font-semibold text-slate-500 whitespace-nowrap ml-2">{h.event}</span>
                     </div>
-                    <p className="text-xs text-slate-600 mt-1">{h.desc}</p>
+                    <p className="text-xs text-slate-600 mt-0.5">{h.desc}</p>
                   </div>
                 ))}
               </div>
@@ -313,13 +314,13 @@ const CleanResume = ({ onClose }) => {
 
             {/* Selected Projects */}
             <section>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 border-b border-slate-100 pb-1">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 pb-1">
                 {t.sectionTitles.projects}
               </h2>
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {t.projects.map((p, i) => (
                   <div key={i} className="group relative pl-4 border-l-2 border-slate-200 hover:border-slate-400 transition-colors">
-                    <div className="flex flex-wrap justify-between items-baseline mb-1.5">
+                    <div className="flex flex-wrap justify-between items-baseline mb-1">
                       <h3 className="font-bold text-base text-slate-900">{p.title}</h3>
                       <span className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600">
                         {p.role}
@@ -327,7 +328,7 @@ const CleanResume = ({ onClose }) => {
                     </div>
                     
                     {/* Tags */}
-                    <div className="flex gap-2 mb-2">
+                    <div className="flex gap-2 mb-1.5">
                       {p.tags.map((tag, idx) => (
                         <span key={idx} className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                           {tag}
@@ -335,9 +336,9 @@ const CleanResume = ({ onClose }) => {
                       ))}
                     </div>
 
-                    <ul className="list-disc list-outside ml-3 space-y-1">
+                    <ul className="list-disc list-outside ml-3 space-y-0.5">
                       {p.items.map((item, idx) => (
-                        <li key={idx} className="text-xs leading-5 text-slate-700">
+                        <li key={idx} className="text-xs leading-relaxed text-slate-700">
                           {renderText(item)}
                         </li>
                       ))}
@@ -353,16 +354,16 @@ const CleanResume = ({ onClose }) => {
             
             {/* Education */}
             <section>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 pb-1">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-100 pb-1">
                 {t.sectionTitles.education}
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {t.education.map((edu, i) => (
                   <div key={i}>
                     <h3 className="font-bold text-sm text-slate-900 leading-tight">{edu.school}</h3>
                     <p className="text-xs text-slate-600 font-medium mt-0.5">{edu.degree}</p>
                     <p className="text-[10px] text-slate-400 font-mono mt-0.5">{edu.period}</p>
-                    <p className="text-[10px] text-slate-500 mt-1 italic">{edu.details}</p>
+                    <p className="text-[10px] text-slate-500 mt-0.5 italic">{edu.details}</p>
                   </div>
                 ))}
               </div>
@@ -370,13 +371,13 @@ const CleanResume = ({ onClose }) => {
 
             {/* Skills */}
             <section>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 pb-1">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-100 pb-1">
                 {t.sectionTitles.skills}
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {t.skills.map((s, i) => (
                   <div key={i}>
-                    <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-1">{s.category}</h3>
+                    <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-0.5">{s.category}</h3>
                     <p className="text-xs font-medium text-slate-800 leading-normal border-l-2 border-slate-200 pl-2">
                       {s.items}
                     </p>
@@ -387,13 +388,13 @@ const CleanResume = ({ onClose }) => {
 
             {/* Creative Experiments */}
             <section>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 pb-1">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-100 pb-1">
                 {t.sectionTitles.experiments}
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {t.experiments.map((exp, i) => (
                   <div key={i} className="bg-slate-50 p-2 rounded border border-slate-100">
-                    <div className="flex justify-between items-center mb-1">
+                    <div className="flex justify-between items-center mb-0.5">
                       <h3 className="font-bold text-xs text-slate-900">{exp.title}</h3>
                       <span className="text-[10px] border border-slate-200 px-1 rounded text-slate-400">{exp.tag}</span>
                     </div>
