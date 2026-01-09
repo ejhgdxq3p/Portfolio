@@ -395,7 +395,7 @@ const CleanResume = ({ onClose }) => {
               <div className="space-y-2">
                 {t.skills.map((s, i) => (
                   <div key={i}>
-                    <h3 className="text-[10px] font-bold uppercase text-slate-400 mb-1">{s.category}</h3>
+                    <h3 className="text-[10px] font-bold uppercase text-slate-900 mb-1">{s.category}</h3>
                     <div className="border-l-2 border-slate-200 pl-2">
                       {renderSkillsText(s.items)}
                     </div>
