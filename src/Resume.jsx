@@ -106,9 +106,10 @@ const CleanResume = ({ onClose }) => {
         }
       ],
       skills: [
-        { category: "AI & Software", items: "Python, PyTorch, DeepSeek/LLM Integration, ComfyUI, React/Vue, Cursor (AI Workflow)." },
-        { category: "Creative Tech", items: "Unity, Godot, TouchDesigner, GenAI Pipeline." },
-        { category: "Hardware", items: "FPGA (Verilog), PCB Design, Signal Processing, MRI Physics." }
+        { category: "AI & Multimodal Systems", items: "Python, PyTorch, CUDA. Multimodal Models: Florence-2 (VLM), SAM / SAM 2, CLIP. Large Language Models: DeepSeek (R1), Qwen2.5-VL, Gemini, Claude. Medical Imaging: NIfTI / DICOM Processing (Nibabel), OpenCV. Model Optimization: bitsandbytes (Quantization), Mixed Precision Inference." },
+        { category: "Agent & AI Workflow Engineering", items: "Agent-based Systems: Tool Calling, Multi-step Reasoning, First-Principles Prompting. Coding & AI Agents: Cursor, Claude Code, OpenAI Codex, Gemini CLI. AI Workflow Orchestration: ComfyUI (Custom Nodes), LangChain, LangGraph. Model Serving & Interaction: Gradio, FastAPI, RESTful APIs." },
+        { category: "Creative Technology & Interactive Systems", items: "Game Engines: Unity, Godot. Creative Coding: TouchDesigner, HTML5 Canvas, Matter.js. Generative Pipelines: GenAI Asset Generation (Text / Image / 3D). Frontend Frameworks: React, Vue, Web-based Interaction Design." },
+        { category: "Hardware & Physical Computing", items: "Digital & RF Systems: FPGA (Verilog), Signal Processing. PCB Design & Hardware Prototyping. Medical Hardware: Low-field MRI Systems, RF Coil Design, MRI Physics. Edge Computing: Local GPU Inference, Privacy-preserving Deployment." }
       ]
     },
     zh: {
@@ -210,9 +211,10 @@ const CleanResume = ({ onClose }) => {
         }
       ],
       skills: [
-        { category: "AI & 软件", items: "Python, PyTorch, DeepSeek/LLM, ComfyUI, React/Vue, Cursor (AI流)." },
-        { category: "创意技术", items: "Unity, Godot, TouchDesigner, GenAI Pipeline." },
-        { category: "硬件工程", items: "FPGA (Verilog), PCB Design, Signal Processing, MRI Physics." }
+        { category: "AI & 多模态系统", items: "Python, PyTorch, CUDA. 多模态模型: Florence-2 (VLM), SAM / SAM 2, CLIP. 大语言模型: DeepSeek (R1), Qwen2.5-VL, Gemini, Claude. 医学影像: NIfTI / DICOM Processing (Nibabel), OpenCV. 模型优化: bitsandbytes (量化), 混合精度推理." },
+        { category: "智能体 & AI工作流工程", items: "基于智能体的系统: 工具调用, 多步推理, 第一性原理提示. 编程与AI智能体: Cursor, Claude Code, OpenAI Codex, Gemini CLI. AI工作流编排: ComfyUI (自定义节点), LangChain, LangGraph. 模型服务与交互: Gradio, FastAPI, RESTful APIs." },
+        { category: "创意技术与交互系统", items: "游戏引擎: Unity, Godot. 创意编程: TouchDesigner, HTML5 Canvas, Matter.js. 生成式管线: GenAI资产生成 (文本 / 图像 / 3D). 前端框架: React, Vue, 基于Web的交互设计." },
+        { category: "硬件与物理计算", items: "数字与射频系统: FPGA (Verilog), 信号处理. PCB设计与硬件原型. 医疗硬件: 低场MRI系统, 射频线圈设计, MRI物理. 边缘计算: 本地GPU推理, 隐私保护部署." }
       ]
     }
   };
