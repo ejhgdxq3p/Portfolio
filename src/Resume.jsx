@@ -384,7 +384,7 @@ const CleanResume = ({ onClose }) => {
                     <p className="text-xs text-slate-600 font-medium mt-0.5">{edu.degree}</p>
                     <p className="text-[10px] text-slate-400 font-mono mt-0.5">{edu.period}</p>
                     {edu.gpa && (
-                      <p className="text-[10px] text-slate-600 font-medium mt-0.5">{edu.gpa}</p>
+                      <p className="text-[10px] text-slate-900 font-bold mt-0.5">{edu.gpa}</p>
                     )}
                     {edu.details && (
                       <p className="text-[10px] text-slate-500 mt-0.5 italic">{edu.details}</p>
