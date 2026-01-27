@@ -11,7 +11,7 @@ const CleanResume = ({ onClose }) => {
       tagline: "Electronics Engineer & Creative Technologist",
       contact: {
         phone: "+86 177 6928 7607",
-        email: "2717177316@qq.com",
+        email: "39asdfghjkl@gmail.com",
         portfolio: "Portfolio Link",
         github: "github.com/ejhgdxq3p",
         location: "Beijing, China"
@@ -118,7 +118,7 @@ const CleanResume = ({ onClose }) => {
       tagline: "电子工程师 & 创意技术专家",
       contact: {
         phone: "+86 177 6928 7607",
-        email: "2717177316@qq.com",
+        email: "39asdfghjkl@gmail.com",
         portfolio: "作品集链接",
         github: "github.com/ejhgdxq3p",
         location: "中国 北京"
@@ -240,13 +240,13 @@ const CleanResume = ({ onClose }) => {
 
   // Helper to render skills text with label-style tags (simplified format)
   const renderSkillsText = (text) => {
-    // Now format is simpler: just split by commas and create tags
-    const tags = text.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    // Now format is simpler: just split by commas (English or Chinese) and create tags
+    const tags = text.split(/[,，]/).map(tag => tag.trim()).filter(tag => tag.length > 0);
     
     return (
       <div className="flex flex-wrap gap-0.5">
         {tags.map((tag, tagIndex) => (
-          <span key={tagIndex} className="text-[9px] font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-600">
+          <span key={tagIndex} className="text-[9px] bg-slate-100 px-1 py-0.5 rounded text-slate-600">
             {tag}
           </span>
         ))}
@@ -342,7 +342,7 @@ const CleanResume = ({ onClose }) => {
                   <div key={i} className="group relative pl-4 border-l-2 border-slate-200 hover:border-slate-400 transition-colors">
                     <div className="flex flex-wrap justify-between items-baseline mb-1">
                       <h3 className="font-bold text-base text-slate-900">{p.title}</h3>
-                      <span className="text-xs font-mono bg-slate-100 px-2 py-0.5 rounded text-slate-600">
+                      <span className="text-xs bg-slate-100 px-2 py-0.5 rounded text-slate-600">
                         {p.role}
                       </span>
                     </div>
