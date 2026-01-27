@@ -90,6 +90,16 @@ const CleanResume = ({ onClose }) => {
           ]
         },
         {
+          title: "Promptoshop: Semantic Signal Processor (Text-Photoshop)",
+          role: "Solo Developer & Designer",
+          tags: ["GenAI", "HCI", "Claude Code"],
+          items: [
+            "Won 2nd Place at Ship It Sunday Hackathon; delivered a fully functional MVP in just 6 hours leveraging **Claude Code** for agentic workflow.",
+            "Pioneered a **Semantic Grading** interface, mapping Photoshop-style signal processing (Contrast/Saturation curves) directly to LLM inference parameters (Temperature/Top_P) via DeepSeek.",
+            "Reframed text editing as high-dimensional signal manipulation, enabling non-linear control over logic density and emotional intensity."
+          ]
+        },
+        {
           title: "NeuroVoxel: Edge-AI Medical Segmentation",
           role: "Solo Researcher",
           tags: ["Medical AI", "Privacy", "Edge Computing"],
@@ -193,6 +203,16 @@ const CleanResume = ({ onClose }) => {
           items: [
             "从零构建台式MRI扫描仪，负责定制 **FPGA** 信号调度与射频线圈制作。",
             "展现了对底层物理感知层的深度理解，为未来BCI接口打下基础。"
+          ]
+        },
+        {
+          title: "Promptoshop: 语义信号处理引擎 (文字版 Photoshop)",
+          role: "独立开发 & 设计",
+          tags: ["生成式 AI", "人机交互", "Claude Code"],
+          items: [
+            "荣获 Ship It Sunday 黑客松 第二名 (2nd Place)；在 6小时 内利用 **Claude Code** 辅助编程完成全栈 (React + FastAPI) 落地。",
+            "首创**语义调色**交互范式，将 Photoshop 的图像处理逻辑（如对比度、饱和度曲线）数学映射为 DeepSeek 模型的推理参数 (Temperature/Top_P)。",
+            "实现了对文本逻辑密度与情绪色彩的**像素级**非线性编辑，将传统的 Chat 交互重构为可视化的信号控制台。"
           ]
         },
         {
