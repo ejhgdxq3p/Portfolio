@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sun, Moon, Github, Twitter, Mail, ArrowRight, Zap, Waves, Plus } from 'lucide-react';
 import CleanResume from './Resume';
+import MihoyoResume from './MihoyoResume';
+import AgentResume from './AgentResume';
 
 /**
  * 缓动函数
@@ -178,6 +180,8 @@ const App = () => {
 
   const projects = [
     { id: '01', title: 'Resume / CV', tags: ['Identity', 'System'], img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=800' },
+    { id: '06', title: 'Mihoyo / CV', tags: ['Game', 'Interview'], img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800' },
+    { id: '07', title: 'Agent / CV', tags: ['LLM', 'Workflow'], img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800' },
     { id: '02', title: 'Cyber Mesh', tags: ['WebGL', 'Branding'], img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800' },
     { id: '03', title: 'Tape Lab', tags: ['Interactive', 'UI'], img: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800' },
     { id: '04', title: 'Acid Type', tags: ['Typography'], img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800' },
@@ -242,6 +246,14 @@ const App = () => {
       
       {activeProject === '01' && (
         <CleanResume onClose={() => setActiveProject(null)} />
+      )}
+
+      {activeProject === '06' && (
+        <MihoyoResume onClose={() => setActiveProject(null)} />
+      )}
+
+      {activeProject === '07' && (
+        <AgentResume onClose={() => setActiveProject(null)} />
       )}
 
       {!activeProject && (
@@ -312,7 +324,7 @@ const App = () => {
                     {...proj} 
                     darkMode={darkMode} 
                     onHover={setHoveredProject} 
-                    onClick={() => proj.id === '01' ? setActiveProject('01') : null}
+                    onClick={() => ['01', '06', '07'].includes(proj.id) ? setActiveProject(proj.id) : null}
                  />
                </div>
              ))}
