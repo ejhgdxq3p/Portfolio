@@ -43,6 +43,50 @@ const highlightedTerms = [
   'Nacos',
   'ETL',
   'MCP',
+  'MCP server',
+  'NAS',
+  'Cloudflare Tunnel',
+  'Caddy',
+  'Tailscale',
+  'MCP instructions',
+  'JSON-RPC over stdio',
+  'SSE 状态同步',
+  'SSE state sync',
+  '单一数据源',
+  '分层上下文管理',
+  '语义化素材归档',
+  '结构化引用标记',
+  '跨项目风格库',
+  '端到端自建部署',
+  'layered context management',
+  'single source of truth',
+  'self-hosted deployment',
+  'harness',
+  'Agent harness',
+  'context engineering',
+  'Context Engineering',
+  '检索即数据依赖',
+  '上下文分层',
+  '上下文工程',
+  'JSON-RPC',
+  'stdio',
+  'SSE',
+  'Node.js',
+  'ComfyUI',
+  'Seedance 2.0',
+  'MiniMax-H3',
+  'systemd',
+  'SIGTERM',
+  '单一事实源',
+  '会话恢复',
+  '权限边界',
+  '前置校验',
+  '多后端路由',
+  'single source of truth',
+  'session resume',
+  'capability scoping',
+  'pre-dispatch validation',
+  'multi-backend routing',
   'DeepSeek R1',
   'Qwen2.5-VL',
   'multi-agent workflow',
@@ -114,14 +158,15 @@ const resumeContent = {
     ],
     projects: [
       {
-        name: 'Composer-Agent',
-        subtitle: '多智能体 AI 编曲系统',
-        period: '2026.04 - 2026.05',
-        tags: ['LangGraph', 'Tool Calling', 'Music AI'],
+        name: 'Storyboard Flow',
+        subtitle: '生成式视频 Agent 系统 / 独立架构',
+        period: '2026.07 - 至今',
+        tags: ['Context Engineering', 'MCP', 'Node.js'],
         bullets: [
-          '基于 LangGraph 搭建多智能体协作框架，设计 Supervisor + Specialist 架构，引入 ReAct（Reasoning + Acting）执行范式，将推理规划与 Tool Calling 行为解耦，实现音乐改编与生成任务的动态路由及状态编排。',
-          '实现 ReAct 驱动的 Tool Calling 工作流，接入 music21、音频渲染与 Docker 沙箱，使各 agent 在 ReAct 执行范式下完成多步音乐生成与工具调用闭环。',
-          '设计基于 ABC notation 的结构化中间表示与自动评测体系，支持 ReAct agent 间中间结果传递、多轮反思式修复（iterative refinement）、失败重试及 benchmark 回归测试。',
+          '基于 Node.js 自建 MCP server（JSON-RPC over stdio）与 SSE 状态同步，服务端图存储作为单一数据源，前端与 Agent 实时一致。',
+          '设计分层上下文管理：prompt 模板与 Agent skill 分离存储，检索结果随工具返回值下发，规则统一在 MCP instructions 中声明。',
+          '实现语义化素材归档、结构化引用标记注入与跨项目风格库，控制长任务的上下文信噪比。',
+          '完成端到端自建部署：NAS 常驻服务，Cloudflare Tunnel 出站暴露、Caddy 认证、Tailscale 内网互联、systemd 托管，本机 GPU 跑 ComfyUI 推理。',
         ],
       },
       {
@@ -156,7 +201,7 @@ const resumeContent = {
       {
         company: '中数智汇',
         role: '智能体开发工程师',
-        period: '2026.04 - 至今',
+        period: '2026.04 - 2026.06.13',
         bullets: [
           '基于 FastAPI、MySQL 与 Langfuse 开发生产级问答分析系统，构建对话 trace 拉取、LLM 自动标注、数据落库与分析接口暴露的完整链路。',
           '设计每日 ETL pipeline，使用 APScheduler + subprocess 实现定时任务调度，完成对话清洗、分类打标与幂等同步，并通过 Nacos 支持模型与 prompt 热更新。',
@@ -248,14 +293,15 @@ const resumeContent = {
     ],
     projects: [
       {
-        name: 'Composer-Agent',
-        subtitle: 'Multi-Agent AI Composition System',
-        period: '2026.04 - 2026.05',
-        tags: ['LangGraph', 'Tool Calling', 'Music AI'],
+        name: 'Storyboard Flow',
+        subtitle: 'Generative-Video Agent System / Sole Architect',
+        period: '2026.07 - Present',
+        tags: ['Context Engineering', 'MCP', 'Node.js'],
         bullets: [
-          'Built a LangGraph-based multi-agent collaboration framework with a Supervisor + Specialist architecture, introduced the ReAct (Reasoning + Acting) execution pattern, and decoupled reasoning/planning from Tool Calling to enable dynamic routing and state orchestration for music arrangement and generation tasks.',
-          'Implemented a ReAct-driven Tool Calling workflow integrating music21, audio rendering, and Docker sandbox execution, enabling agents to complete a closed loop of multi-step music generation and tool use under the ReAct execution pattern.',
-          'Designed an ABC notation-based structured intermediate representation and automated evaluation system, supporting intermediate result passing across ReAct agents, iterative refinement, failure retry, and benchmark regression testing.',
+          'Built a custom MCP server (JSON-RPC over stdio) and SSE state sync in Node.js, with a server-side graph store as the single source of truth shared by the UI and the agent.',
+          'Designed layered context management: prompt templates and agent skills stored separately, retrieval results returned inline with tool responses, rules declared once in the MCP instructions.',
+          'Implemented semantic asset archiving, structured reference-marker injection, and a cross-project style library to control context signal-to-noise on long-running tasks.',
+          'Delivered end-to-end self-hosted deployment: services on a NAS, outbound exposure via Cloudflare Tunnel, Caddy authentication, Tailscale mesh networking, systemd supervision, and local GPU inference through ComfyUI.',
         ],
       },
       {
@@ -289,7 +335,7 @@ const resumeContent = {
       {
         company: 'Zhongshu Zhihui',
         role: 'Agent Development Engineer',
-        period: '2026.04 - Present',
+        period: '2026.04 - 2026.06.13',
         bullets: [
           'Built a production-ready Q&A analytics system with FastAPI, MySQL, and Langfuse, covering conversation trace retrieval, LLM-based auto-labeling, data persistence, and analytics APIs.',
           'Designed a daily ETL pipeline with APScheduler and subprocess-based scheduling for conversation cleaning, classification, labeling, and idempotent synchronization, with Nacos enabling hot updates for models and prompts.',
@@ -353,8 +399,12 @@ const resumeContent = {
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+// 长词优先：否则 'MCP' 会先匹配掉 'MCP server' 这类更长的词条
 const highlightPattern = new RegExp(
-  `(${highlightedTerms.map((term) => escapeRegExp(term)).join('|')})`,
+  `(${[...highlightedTerms]
+    .sort((a, b) => b.length - a.length)
+    .map((term) => escapeRegExp(term))
+    .join('|')})`,
   'g'
 );
 
